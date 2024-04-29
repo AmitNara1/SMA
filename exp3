@@ -1,0 +1,60 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+G=nx.Graph()
+G.add_nodes_from(['a','b','c','d'])
+G.nodes()
+G.add_edge('a','b')
+G.add_edge('a','c')
+G.add_edge('b','d')
+G.edges()
+
+nx.draw(G)
+plt.show()
+nx.degree(G)
+nx.degree_centrality(G)
+
+nx.shortest_path(G,'a','d')
+nx.betweenness_centrality(G)
+nx.eigenvector_centrality(G)
+
+G=nx.gnp_random_graph(10,0.5)
+nx.draw(G)
+
+nx.draw(G,with_labels=1)
+plt.show()
+
+nx.degree(G)
+nx.degree_centrality(G)
+nx.betweenness_centrality(G)
+nx.eigenvector_centrality(G)
+m_influential=nx.degree_centrality(G)
+for w in sorted(m_influential,key=m_influential.get,reverse=True):
+  print(w,m_influential[w])
+
+M=nx.Graph()
+M.add_nodes_from(['a','b','c','d','e','f','g','h'])
+M.nodes()
+M.add_edge('a','b')
+M.add_edge('b','c')
+M.add_edge('b','d')
+M.add_edge('c','e')
+M.add_edge('d','e')
+M.add_edge('e','h')
+M.add_edge('e','f')
+M.add_edge('e','g')
+M.add_edge('d','g')
+M.add_edge('g','h')
+
+nx.draw(M)
+plt.show()
+
+nx.degree(M)
+nx.degree_centrality(M)
+nx.betweenness_centrality(M)
+nx.eigenvector_centrality(M)
+m_influential=nx.betweenness_centrality(M)
+for x in sorted(m_influential,key=m_influential.get,reverse=True):
+  print(x,m_influential[x])
+
+cliques=list(nx.find_cliques(M))
+cliques
